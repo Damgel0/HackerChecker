@@ -23,6 +23,7 @@ public class CheckCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "This command can only be used by players!");
             return true;
@@ -53,11 +54,11 @@ public class CheckCommand implements CommandExecutor {
             if (isPlayerOnCheck(targetID)) {
                 removeEffects(target);
                 removePlayerFromCheck(targetID);
-                checker.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Messages.player-is-free", "&aPlayer is now free")));
+                checker.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Messages.player-is-free", "&aPlayer is free")));
             } else {
                 putPlayerOnCheck(targetID);
                 applyEffects(target);
-                checker.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Messages.player-on-check", "&bPlayer is now under check")));
+                checker.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Messages.player-on-check", "&bPlayer is on check")));
             }
         }
         return true;
@@ -80,11 +81,14 @@ public class CheckCommand implements CommandExecutor {
     }
 
     private void applyEffects(Player player) {
+        boolean TELEPORT_SPAWN = plugin.getConfig().getBoolean("teleport-spawn", true);
         player.sendTitle(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Title.title", "&6CHECK!")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Title.subtitle", "Type /contact and your Discord!")), 15, 604800, 15);
         player.setGameMode(GameMode.ADVENTURE);
         player.setFlying(false);
         player.setFlySpeed(0.0F);
-        player.performCommand("spawn");
+        if (TELEPORT_SPAWN) {
+            player.performCommand("spawn");
+        }
     }
 
     private void removeEffects(Player player) {
