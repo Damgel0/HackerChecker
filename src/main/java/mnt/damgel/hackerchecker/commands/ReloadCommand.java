@@ -17,7 +17,7 @@ public class ReloadCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         plugin.reloadConfig();
-        sender.sendMessage(ChatColor.GREEN + "Configuration reloaded");
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Messages.config-reload", "&aConfiguration reloaded")));
         return true;
     }
 }
