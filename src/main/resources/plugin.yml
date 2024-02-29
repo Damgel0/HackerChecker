@@ -1,0 +1,22 @@
+name: HackerChecker
+version: '${version}'
+main: mnt.damgel.hackerchecker.HackerChecker
+api-version: '1.16'
+authors: [Damgel]
+description: Help administation to check players for hacks
+website: pixikworld.ru
+commands:
+  check:
+    description: Позволяет вызвать на проверку игрока
+    permission: hackerchecker.check
+    permission-message: У вас нету прав
+    aliases:
+      - hcheck
+  contact:
+    description: Позволяет отвечать на проверке
+  reload:
+    description: Перезагружает конфигурацию
+    permission: hackerchecker.reload
+permissions:
+  hackerchecker.bypass:
+    description: Вы не можете быть вызваны на проверку
