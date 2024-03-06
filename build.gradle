@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'mnt.damgel'
-version = '0.6.4'
+version = '0.7.1'
 
 repositories {
     mavenCentral()
