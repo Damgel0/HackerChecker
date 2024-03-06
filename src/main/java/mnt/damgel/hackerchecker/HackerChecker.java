@@ -13,12 +13,14 @@ public final class HackerChecker extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         getConfig().options().copyDefaults();
+        
         getCommand("check").setExecutor(new CheckCommand(this));
         getCommand("contact").setExecutor(new ContactCommand(this));
         getCommand("reload").setExecutor(new ReloadCommand(this));
-
+        
         getServer().getPluginManager().registerEvents(new BanMovementListener(), this);
-        getServer().getPluginManager().registerEvents(new BanChatListener(), this);
+        getServer().getPluginManager().registerEvents(new BanChatListener(this), this);
+        getServer().getPluginManager().registerEvents(new BanDropItem(), this);
     }
 
 }
